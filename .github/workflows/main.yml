@@ -22,3 +22,6 @@ jobs:
         run: |
           echo "No Node project detected."
           echo "Skipping npm install and build."
+
+      - name: Use secret
+        run: echo "Using secret: ${{ secrets.API_KEY }}"
