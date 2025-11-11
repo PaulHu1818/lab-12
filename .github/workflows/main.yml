@@ -1,0 +1,17 @@
+name: CI Example
+
+on:
+  push:
+    branches:
+      - main    # triggers on pushes to main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest   # GitHub-hosted Ubuntu VM
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Run a simple script
+        run: echo "Hello, GitHub Actions!"
