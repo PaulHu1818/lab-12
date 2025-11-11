@@ -1,17 +1,35 @@
-name: CI Example
+
+name: Node CI Build and Test
 
 on:
   push:
     branches:
-      - main    # triggers on pushes to main
+      - main
 
 jobs:
   build:
-    runs-on: ubuntu-latest   # GitHub-hosted Ubuntu VM
+    runs-on: ubuntu-latest
 
     steps:
+      # 1️⃣ Checkout your repository
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Run a simple script
-        run: echo "Hello, GitHub Actions!"
+      # 2️⃣ Set up Node.js environment (required for npm commands)
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+
+      # 3️⃣ Build the application
+      - name: Build the application
+        run: |
+          echo "Building the app..."
+          npm install
+          npm run build
+
+      # 4️⃣ Run tests
+      - name: Run tests
+        run: |
+          echo "Running tests..."
+          npm test
